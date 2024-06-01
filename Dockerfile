@@ -1,24 +1,20 @@
-FROM php:7.4-fpm
+FROM richarvey/nginx-php-fpm:3.1.6
 
-# Install dependencies for the operating system software
-RUN apt-get update && apt-get install -y \
-    libonig-dev \
-    libxml2-dev \
-    zip \
-    unzip
+COPY . .
 
-# Install extensions for PHP
-RUN docker-php-ext-install pdo mbstring pdo_mysql tokenizer xml ctype json
+# Image config
+ENV SKIP_COMPOSER 1
+ENV WEBROOT /var/www/html/public
+ENV PHP_ERRORS_STDERR 1
+ENV RUN_SCRIPTS 1
+ENV REAL_IP_HEADER 1
 
-# Get latest Composer
-COPY --from=composer:latest /usr/bin/composer /usr/bin/composer
+# Laravel config
+ENV APP_ENV production
+ENV APP_DEBUG false
+ENV LOG_CHANNEL stderr
 
-# Set working directory
-WORKDIR /var/www
+# Allow composer to run as root
+ENV COMPOSER_ALLOW_SUPERUSER 1
 
-# Copy existing application directory contents to the working directory
-COPY . /var/www
-
-# Expose port 9000 and start php-fpm server
-EXPOSE 9000
-CMD ["php-fpm"]
+CMD ["/start.sh"]
