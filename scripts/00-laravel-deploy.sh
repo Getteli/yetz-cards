@@ -2,11 +2,18 @@
 echo "Running composer"
 composer install --no-dev --working-dir=/var/www/html
 
+echo "Create .env..."
+cp /var/www/html/.env.example /var/www/html/.env
+
 echo "Caching config..."
 php artisan config:cache
 
 echo "Caching routes..."
 php artisan route:cache
 
+echo "generate keys..."
+php artisan key:generate
+php artisan key:generate --show
+
 echo "Running migrations..."
-# php artisan migrate --force
+php artisan migrate --force
