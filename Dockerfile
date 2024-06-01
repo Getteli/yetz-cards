@@ -12,11 +12,6 @@ ENV REAL_IP_HEADER 1
 RUN apk add --update nodejs npm
 RUN npm -v
 
-# Laravel config
-ENV APP_ENV local
-ENV APP_DEBUG true
-ENV LOG_CHANNEL stderr
-
 # Allow composer to run as root
 ENV COMPOSER_ALLOW_SUPERUSER 1
 
