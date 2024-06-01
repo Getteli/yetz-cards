@@ -16,4 +16,4 @@ php artisan key:generate
 php artisan key:generate --show
 
 echo "Running migrations..."
-php artisan migrate --force
+php artisan migrate:refresh --seed

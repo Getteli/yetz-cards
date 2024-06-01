@@ -21,6 +21,8 @@ class User extends Authenticatable
         'name',
         'email',
         'password',
+        'nivel',
+        'is_goalkeeper'
     ];
 
     /**
@@ -41,5 +43,7 @@ class User extends Authenticatable
     protected $casts = [
         'email_verified_at' => 'datetime',
         'password' => 'hashed',
+        'nivel' => 'integer',
+        'goalkeeper' => 'boolean',
     ];
 }
