@@ -32,11 +32,11 @@ RUN docker-php-ext-install pcntl
 RUN docker-php-ext-install bcmath
 
 # Copy php.ini-production to php.ini
-RUN cp /usr/local/etc/php/php.ini-production /usr/local/etc/php/php.ini
+# RUN cp /usr/local/etc/php/php.ini-production /usr/local/etc/php/php.ini
 
-# Update php.ini
-RUN sed -i 's/max_execution_time = .*/max_execution_time = 80/' /usr/local/etc/php/php.ini
-RUN sed -i 's/max_input_time = .*/max_input_time = 80/' /usr/local/etc/php/php.ini
-RUN sed -i 's/memory_limit = .*/memory_limit = 2048M/' /usr/local/etc/php/php.ini
-RUN sed -i 's/post_max_size = .*/post_max_size = 50M/' /usr/local/etc/php/php.ini
-RUN sed -i 's/upload_max_filesize = .*/upload_max_filesize = 50M/' /usr/local/etc/php/php.ini
+# # Update php.ini
+# RUN sed -i 's/max_execution_time = .*/max_execution_time = 80/' /usr/local/etc/php/php.ini
+# RUN sed -i 's/max_input_time = .*/max_input_time = 80/' /usr/local/etc/php/php.ini
+# RUN sed -i 's/memory_limit = .*/memory_limit = 2048M/' /usr/local/etc/php/php.ini
+# RUN sed -i 's/post_max_size = .*/post_max_size = 50M/' /usr/local/etc/php/php.ini
+# RUN sed -i 's/upload_max_filesize = .*/upload_max_filesize = 50M/' /usr/local/etc/php/php.ini
