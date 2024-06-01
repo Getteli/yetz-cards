@@ -9,6 +9,9 @@ ENV PHP_ERRORS_STDERR 1
 ENV RUN_SCRIPTS 1
 ENV REAL_IP_HEADER 1
 
+RUN apk add --update nodejs npm
+RUN npm -v
+
 # Laravel config
 ENV APP_ENV local
 ENV APP_DEBUG true

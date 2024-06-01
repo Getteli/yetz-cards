@@ -2,6 +2,9 @@
 echo "Running composer"
 composer install --no-dev --working-dir=/var/www/html
 
+echo "Running npm install"
+npm install
+
 echo "Create .env..."
 cp /var/www/html/.env.example /var/www/html/.env
 
@@ -22,3 +25,6 @@ php artisan key:generate --show
 
 echo "Running migrations..."
 php artisan migrate:refresh --seed
+
+echo "Running npm build..."
+npm run build
