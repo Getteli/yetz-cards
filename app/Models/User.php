@@ -32,7 +32,7 @@ class User extends Authenticatable
      */
     protected $hidden = [
         'password',
-        'remember_token',
+        'remember_token'
     ];
 
     /**
@@ -45,5 +45,18 @@ class User extends Authenticatable
         'password' => 'hashed',
         'nivel' => 'integer',
         'goalkeeper' => 'boolean',
+        'created_at' => 'datetime',
+        'updated_at' => 'datetime'
     ];
+
+	/**
+	 * Get team
+	 *
+	 * @return \Illuminate\Database\Eloquent\Relations\HasMany
+	 */
+	public function teams()
+	{
+		return $this->belongsToMany(Team::class, 'user_has_team', 'user_id', 'team_id')
+        ->withPivot(['presence','created_at', 'updated_at', 'deleted_at']);
+	}
 }
