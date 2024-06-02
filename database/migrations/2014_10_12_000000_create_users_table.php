@@ -21,6 +21,7 @@ return new class extends Migration
             $table->boolean('is_goalkeeper')->default(false);
             $table->rememberToken();
             $table->timestamps();
+            $table->softDeletes();
         });
     }
 

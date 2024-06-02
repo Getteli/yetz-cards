@@ -16,6 +16,7 @@ return new class extends Migration
             $table->string('name',100);
             $table->boolean('is_active');
             $table->timestamps();
+            $table->softDeletes();
         });
 
 		Schema::create('user_has_team', function (Blueprint $table) {
