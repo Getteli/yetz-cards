@@ -2,10 +2,9 @@
 
 namespace App\Http\Controllers;
 
-use App\Http\Requests\ProfileUpdateRequest;
+use App\Models\Team;
 use Illuminate\Http\RedirectResponse;
 use Illuminate\Http\Request;
-use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Redirect;
 use Illuminate\View\View;
 
@@ -16,8 +15,10 @@ class TeamController extends Controller
      */
     public function index(Request $request): View
     {
-        return view('profile.edit', [
-            'user' => $request->user(),
+        $teams = Team::all() ?? [];
+
+        return view('team.list',[
+            'teams' => $teams
         ]);
     }
 
@@ -35,6 +36,14 @@ class TeamController extends Controller
     public function update(Request $request): RedirectResponse
     {
         return Redirect::to('/');
+    }
+
+    /**
+     * Delete the user's account.
+     */
+    public function form(): view
+    {
+        return view('team.form');
     }
 
     /**

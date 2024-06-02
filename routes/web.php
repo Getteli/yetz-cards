@@ -29,6 +29,7 @@ Route::middleware('auth')->group(function ()
     // TEAM
     Route::get('/team/list', [TeamController::class, 'index'])->name('team.list');
     Route::get('/team/{id}', [TeamController::class, 'open'])->name('team.open');
+    Route::get('/team/form', [TeamController::class, 'form'])->name('team.form');
     Route::patch('/team/edit', [TeamController::class, 'update'])->name('team.edit');
     Route::patch('/team/create', [TeamController::class, 'create'])->name('team.create');
 
