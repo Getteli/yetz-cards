@@ -28,7 +28,7 @@ class ProfileController extends Controller
     {
         try
         {
-            $request->prepareForValidation();          
+            $request->prepareForValidation();
 
             $request->user()->fill($request->validated());
 

@@ -44,7 +44,7 @@ class PlayerController extends Controller
     {
         try
         {
-            $request->prepareForValidation();          
+            $request->prepareForValidation();
 
             $player = (new User())->where('id', $request->id)->first();
             $player->fill($request->validated());

@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\Models\Team;
 use Illuminate\Http\RedirectResponse;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Redirect;
 use Illuminate\View\View;
 
@@ -25,9 +26,13 @@ class TeamController extends Controller
     /**
      * Update the user's profile information.
      */
-    public function open($id): RedirectResponse
+    public function open($id): view
     {
-        return Redirect::route('profile.edit')->with('status', 'profile-updated');
+        $team = (new Team())->where('id', $id)->first() ?? [];
+
+        return view('team.edit', [
+            'team' => $team,
+        ]);
     }
 
     /**
@@ -35,7 +40,22 @@ class TeamController extends Controller
      */
     public function update(Request $request): RedirectResponse
     {
-        return Redirect::to('/');
+        try
+        {
+            $request->merge([
+                'is_active' => $request->is_active ? 1 : 0,
+            ]);
+
+            $team = (new Team())->where('id', $request->id)->first();
+            $team->fill($request->all());
+            $team->save();
+            
+            return Redirect::route('team.open',['id'=>$team->id])->with('status', 'Time atualizado com sucesso');
+        }
+        catch (\Throwable $th)
+        {
+            return Redirect::route('team.open',['id'=>$team->id])->with('status', 'Erro ao atualizar. Contacte o suporte');
+        }
     }
 
     /**
@@ -52,5 +72,26 @@ class TeamController extends Controller
     public function create(Request $request): RedirectResponse
     {
         return Redirect::to('/');
+    }
+
+    /**
+     * Delete the user's account.
+     */
+    public function delete($id): RedirectResponse
+    {
+        $team = Team::where('id',$id)->first();
+
+        DB::table('user_has_team')
+            ->where('team_id',$id)
+            ->delete();
+
+        $team->delete();
+
+        // retoma para a listagem
+        $teams = (new Team())->all() ?? [];
+
+        return Redirect::route('team.list', [
+            'teams' => $teams,
+        ]);
     }
 }
