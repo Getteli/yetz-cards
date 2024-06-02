@@ -21,7 +21,7 @@ class User extends Authenticatable
         'name',
         'email',
         'password',
-        'nivel',
+        'level',
         'is_goalkeeper'
     ];
 
@@ -43,7 +43,7 @@ class User extends Authenticatable
     protected $casts = [
         'email_verified_at' => 'datetime',
         'password' => 'hashed',
-        'nivel' => 'integer',
+        'level' => 'integer',
         'goalkeeper' => 'boolean',
         'created_at' => 'datetime',
         'updated_at' => 'datetime'
