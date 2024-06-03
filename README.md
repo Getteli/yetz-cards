@@ -36,6 +36,17 @@ docker run -p 80:80 yetzcardsdocker
 php artisan serve
 ```
 
+### PEST
+
+Estou utilizando o PEST para realizar os testes. Criei alguns metodos de testes de integração com dados fake do factory. 
+Teste em autenticação, perfil, jogador e time. Apenas para exemplificar algumas habilidades.
+
+Verifique os testes na pasta test/Feature
+
+```bash
+./vendor/bin/pest
+```
+
 ### POSTMAN
 O collection e o environment estão na raiz do projeto, para testar via API também.
 

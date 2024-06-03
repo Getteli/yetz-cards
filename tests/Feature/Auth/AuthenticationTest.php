@@ -5,6 +5,7 @@ namespace Tests\Feature\Auth;
 use App\Models\User;
 use App\Providers\RouteServiceProvider;
 use Illuminate\Foundation\Testing\RefreshDatabase;
+use Illuminate\Http\Response as HttpResponse;
 use Tests\TestCase;
 
 class AuthenticationTest extends TestCase
@@ -15,7 +16,7 @@ class AuthenticationTest extends TestCase
     {
         $response = $this->get('/login');
 
-        $response->assertStatus(200);
+        $response->assertStatus(httpresponse::HTTP_OK);
     }
 
     public function test_users_can_authenticate_using_the_login_screen(): void
@@ -24,7 +25,7 @@ class AuthenticationTest extends TestCase
 
         $response = $this->post('/login', [
             'email' => $user->email,
-            'password' => 'password',
+            'password' => '123456',
         ]);
 
         $this->assertAuthenticated();
