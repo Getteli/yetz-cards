@@ -99,7 +99,12 @@ class TeamController extends Controller
                 return Redirect::route('team.form')->with('status', 'Não é permitido criar a partida quando o numero de jogadores é maior que a quantidade de jogadores confirmados');
             }
 
-            // equilibrar o time pelo nivel dos jogadores (fazendo com que), 1° ordena pelo level
+            /**
+             * equilibrar o time pelo nivel dos jogadores,
+             * 1° ordena pelo level do menor para o maior
+             * depois reordena para equilibrar os times
+             * A lógica escolhida é: colocar um de maior nivel com o menor nivel, intercalados
+             */
             usort($players, function ($a, $b) {
                 return $a['level'] - $b['level'];
             });
@@ -107,10 +112,10 @@ class TeamController extends Controller
             // agora equilibra entre o maior e o menor
             for ($i = 0; $i < count($players) / 2; $i++)
             {
-                $misturado[] = $players[$i];
-                $misturado[] = $players[count($players) - 1 - $i];
+                $players_ordenado[] = $players[$i];
+                $players_ordenado[] = $players[count($players) - 1 - $i];
             }
-            $players = $misturado;
+            $players = $players_ordenado;
 
             DB::beginTransaction();
 
