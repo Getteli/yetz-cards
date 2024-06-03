@@ -21,6 +21,9 @@
                     <x-nav-link :href="route('team.list')" :active="request()->routeIs('team.list')">
                         {{ __('Times') }}
                     </x-nav-link>
+                    <x-nav-link :href="route('log_team.list')" :active="request()->routeIs('log_team.list')">
+                        {{ __('Resultados') }}
+                    </x-nav-link>
                 </div>
             </div>
 
@@ -81,6 +84,9 @@
             </x-responsive-nav-link>
             <x-responsive-nav-link :href="route('team.list')" :active="request()->routeIs('team.list')">
                 {{ __('Times') }}
+            </x-responsive-nav-link>
+            <x-responsive-nav-link :href="route('log_team.list')" :active="request()->routeIs('log_team.list')">
+                {{ __('Resultados') }}
             </x-responsive-nav-link>
         </div>
 

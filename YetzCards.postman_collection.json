@@ -489,6 +489,110 @@
 			"response": []
 		},
 		{
+			"name": "Resultados - listagem",
+			"protocolProfileBehavior": {
+				"disableBodyPruning": true
+			},
+			"request": {
+				"auth": {
+					"type": "bearer",
+					"bearer": [
+						{
+							"key": "token",
+							"value": "{{access_token}}",
+							"type": "string"
+						}
+					]
+				},
+				"method": "GET",
+				"header": [],
+				"body": {
+					"mode": "urlencoded",
+					"urlencoded": []
+				},
+				"url": {
+					"raw": "http://127.0.0.1:8000/api/resultados/list",
+					"protocol": "http",
+					"host": [
+						"127",
+						"0",
+						"0",
+						"1"
+					],
+					"port": "8000",
+					"path": [
+						"api",
+						"resultados",
+						"list"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Resultados - Criar",
+			"request": {
+				"auth": {
+					"type": "bearer",
+					"bearer": [
+						{
+							"key": "token",
+							"value": "{{access_token}}",
+							"type": "string"
+						}
+					]
+				},
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "urlencoded",
+					"urlencoded": [
+						{
+							"key": "principal",
+							"value": "",
+							"description": "id do time mandante",
+							"type": "text"
+						},
+						{
+							"key": "score_principal",
+							"value": "0",
+							"description": "int",
+							"type": "text"
+						},
+						{
+							"key": "visitor",
+							"value": "",
+							"description": "id do time visitante",
+							"type": "text"
+						},
+						{
+							"key": "score_visitor",
+							"value": "0",
+							"description": "int",
+							"type": "text"
+						}
+					]
+				},
+				"url": {
+					"raw": "http://127.0.0.1:8000/api/resultados/create",
+					"protocol": "http",
+					"host": [
+						"127",
+						"0",
+						"0",
+						"1"
+					],
+					"port": "8000",
+					"path": [
+						"api",
+						"resultados",
+						"create"
+					]
+				}
+			},
+			"response": []
+		},
+		{
 			"name": "Time - Open",
 			"protocolProfileBehavior": {
 				"disableBodyPruning": true

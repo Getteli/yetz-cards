@@ -1,6 +1,7 @@
 <?php
 
 use App\Http\Controllers\IndexController;
+use App\Http\Controllers\LogTeamController;
 use App\Http\Controllers\PlayerController;
 use App\Http\Controllers\ProfileController;
 use App\Http\Controllers\TeamController;
@@ -42,6 +43,11 @@ Route::middleware('auth')->group(function ()
     Route::patch('/player/edit', [PlayerController::class, 'update'])->name('player.update');
     Route::patch('/player/create', [PlayerController::class, 'create'])->name('player.create');
     Route::delete('/player/delete/{id}', [PlayerController::class, 'delete'])->name('player.delete');
+
+    // LOG TEAM
+    Route::get('/resultados/list', [LogTeamController::class, 'index'])->name('log_team.list');
+    Route::get('/resultados/form', [LogTeamController::class, 'form'])->name('log_team.form');
+    Route::post('/resultados/create', [LogTeamController::class, 'create'])->name('log_team.create');
 });
 
 require __DIR__.'/auth.php';

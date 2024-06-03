@@ -285,7 +285,7 @@ class TeamController extends Controller
          * Metodo para criar uma partida
          *
          * @param Request $request
-         * @return RedirectResponse
+         * @return mixed
          */
         public function apiCreate(Request $request): mixed
         {

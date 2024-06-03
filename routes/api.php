@@ -59,4 +59,8 @@ Route::middleware('auth:sanctum')->group(function () {
     Route::post('/player/edit', [PlayerController::class, 'apiUpdate']);
     Route::post('/player/create', [PlayerController::class, 'apiCreate']);
     Route::delete('/player/delete/{id}', [PlayerController::class, 'apiDelete']);
+
+    // LOG TEAM
+    Route::get('/resultados/list', [LogTeamController::class, 'apiIndex']);
+    Route::post('/resultados/create', [LogTeamController::class, 'apiCreate']);
 });
