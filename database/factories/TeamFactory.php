@@ -15,7 +15,9 @@ class TeamFactory extends Factory
     {
         return [
             'name' => fake()->name(),
-            'is_active' => 1
+            'is_active' => 1,
+            'created_at' => now(),
+            'updated_at' => now()
         ];
     }
 }

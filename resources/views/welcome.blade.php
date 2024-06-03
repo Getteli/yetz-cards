@@ -82,6 +82,32 @@
                 @endif
             </div>
         </div>
+        
+        <div class="p-4 sm:p-8 bg-white shadow sm:rounded-lg">
+            <div class="w-full">
+                <section>
+                    <header>
+                        <h2 class="text-lg font-medium text-gray-900 text-center mb-5">
+                            {{ __('Resultado da última partida') }}
+                        </h2>
+                    </header>
+                    <div class="flex flex-row flex-nowrap justify-center items-center">
+                        @if($last_result)
+                            <a href="#" class="block max-w-sm p-6 bg-white border border-gray-200 rounded-lg shadow hover:bg-gray-100 mx-3">
+                                <h5 class="mb-2 text-2xl font-bold tracking-tight text-gray-900 text-center">{{$last_result->principal->name}}</h5>
+                                <h5 class="text-3xl text-gray-700 text-center">{{$last_result->score_team1}}</h5>
+                            </a>
+                            <h5 class="text-5xl text-gray-700 text-center">X</h5>
+                            <a href="#" class="block max-w-sm p-6 bg-white border border-gray-200 rounded-lg shadow hover:bg-gray-100 mx-3">
+                                <h5 class="mb-2 text-2xl font-bold tracking-tight text-gray-900 text-center">{{$last_result->visitor->name}}</h5>
+                                <h5 class="text-3xl text-gray-700 text-center">{{$last_result->score_team2}}</h5>
+                            </a>
+                        @endif
+                    </div>
+                </section>
+            </div>
+        </div>
+
         <div class="max-w-7xl mx-auto p-6 lg:p-8 bottom-0 absolute">
             <div class="flex justify-center mt-16 px-0 sm:items-center sm:justify-between">
                 <div class="text-center text-sm sm:text-left">

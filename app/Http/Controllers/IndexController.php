@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Http\Requests\ProfileUpdateRequest;
+use App\Models\LogTeam;
 use App\Models\Team;
 use App\Models\User;
 use Illuminate\Http\RedirectResponse;
@@ -18,8 +19,11 @@ class IndexController extends Controller
      */
     public function home(): View
     {
+        $last_result = LogTeam::latest()->first() ?? null;
+
         return view('welcome', [
             'user' => auth::user(),
+            'last_result' => $last_result
         ]);
     }
 

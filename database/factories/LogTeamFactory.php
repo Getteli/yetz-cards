@@ -26,7 +26,9 @@ class LogTeamFactory extends Factory
             'team1_id' => $team1_id,
             'score_team1' => fake()->numberBetween(0,7),
             'team2_id' => $team2_id,
-            'score_team2' => fake()->numberBetween(0,7)
+            'score_team2' => fake()->numberBetween(0,7),
+            'created_at' => now(),
+            'updated_at' => now()
         ];
     }
 

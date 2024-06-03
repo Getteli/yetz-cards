@@ -28,6 +28,8 @@ class UserFactory extends Factory
             'remember_token' => Str::random(10),
             'level' => mt_rand(1,5),
             'is_goalkeeper' => fake()->boolean(20),
+            'created_at' => now(),
+            'updated_at' => now()
         ];
     }
 
