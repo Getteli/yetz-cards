@@ -14,7 +14,7 @@ use Illuminate\View\View;
 class PlayerController extends Controller
 {
     /**
-     * Display the user's profile form.
+     * Listar players.
      */
     public function index(Request $request): View
     {
@@ -26,7 +26,7 @@ class PlayerController extends Controller
     }
 
     /**
-     * Update the user's profile information.
+     * Pegar informações de um player pelo id.
      */
     public function open($id): view
     {
@@ -38,7 +38,7 @@ class PlayerController extends Controller
     }
 
     /**
-     * Update the user's profile information.
+     * Atualizar player.
      */
     public function update(PlayerUpdateRequest $request): RedirectResponse
     {
@@ -59,7 +59,7 @@ class PlayerController extends Controller
     }
 
     /**
-     * Delete the user's account.
+     * cria um novo player.
      */
     public function create(Request $request): RedirectResponse
     {
@@ -81,7 +81,7 @@ class PlayerController extends Controller
     }
 
     /**
-     * Delete the user's account.
+     * Form para criar player.
      */
     public function form(): view
     {
@@ -89,7 +89,7 @@ class PlayerController extends Controller
     }
 
     /**
-     * Delete the user's account.
+     * Delete player.
      */
     public function delete($id): RedirectResponse
     {
@@ -104,4 +104,99 @@ class PlayerController extends Controller
             'players' => $players,
         ]);
     }
+
+    #region API
+
+        /**
+         * Listar players. - API
+         */
+        public function apiIndex(Request $request): \Illuminate\Http\JsonResponse
+        {
+            $players = (new User())->all() ?? [];
+
+            return response()->json($players->toArray());
+        }
+
+        /**
+         * Pegar informações de um player pelo id. - API
+         */
+        public function apiOpen($id): \Illuminate\Http\JsonResponse
+        {
+            $player = (new User())->where('id', $id)->first() ?? [];
+
+            if($player)
+            {
+                return response()->json($player->toArray());
+            }
+            else
+            {
+                return response()->json(['message'=>'Jogador não encontrado']);
+            }
+        }
+
+        /**
+         * Atualizar player. - API
+         */
+        public function apiUpdate(Request $request): \Illuminate\Http\JsonResponse
+        {
+            try
+            {
+                $request->merge([
+                    'is_goalkeeper' => $request->is_goalkeeper == "true" ? 1 : 0,
+                ]);
+
+                $player = (new User())->where('id', $request->id)->first();
+                $player->fill($request->all());
+                $player->save();
+
+                return response()->json($player->toArray());
+            }
+            catch (\Throwable $th)
+            {
+                return response()->json(['message'=>'Erro ao atualizar. Contacte o suporte']);
+            }
+        }
+
+        /**
+         * cria um novo player. - API
+         */
+        public function apiCreate(Request $request): \Illuminate\Http\JsonResponse
+        {
+            try
+            {
+                $request->merge([
+                    'is_goalkeeper' => $request->is_goalkeeper == "1" ? 1 : 0,
+                    'password' => Hash::make(mt_rand(1000000,99999999))
+                ]);
+
+                $player = User::create($request->all());
+
+                return response()->json($player->toArray());
+            }
+            catch (\Throwable $th)
+            {
+                return response()->json(['message'=>'Erro ao criar. Contacte o suporte']);
+            }
+        }
+
+        /**
+         * Delete player. - API
+         */
+        public function apiDelete($id): mixed
+        {
+            $player = User::where('id',$id)->first();
+
+            if($player)
+            {
+                $player->delete();
+
+                return response(null, 204);
+            }
+            else
+            {
+                return response()->json(['message'=>'Jogador não encontrado']);
+            }
+        }
+
+    #endregion
 }

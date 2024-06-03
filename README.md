@@ -6,6 +6,13 @@ Link do projeto no ar: https://yetz-cards.onrender.com/
 
 Preencha os dados no .env local para criar o banco e dados
 
+Faça a instalação do composer e npm
+
+```bash
+composer install
+npm install
+```
+
 Rode o seed para ter uma base de teste
 ### Seed
 ```bash
@@ -29,7 +36,10 @@ docker run -p 80:80 yetzcardsdocker
 php artisan serve
 ```
 
-Alguns pontos:
+### POSTMAN
+O collection e o environment estão na raiz do projeto, para testar via API também.
+
+### OBSERVAÇÕES E CONSIDERAÇÕES
 - Decidi adicionar um diagrama de entidade relaciomento para facilitar a visualização da modelagem do banco usando o **[mermaid](https://mermaid.js.org/)**;
 
 - Coloquei o projeto no ar pelo **[render](https://render.com/)** e o banco em um droplet da digital ocean;

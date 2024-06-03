@@ -26,4 +26,23 @@ class PasswordController extends Controller
 
         return back()->with('status', 'Senha atualizada com sucesso');
     }
+
+    #region API
+        /**
+         * Update the user's password.
+         */
+        public function apiupdate(Request $request): \Illuminate\Http\JsonResponse
+        {
+            $validated = $request->validateWithBag('updatePassword', [
+                'current_password' => ['required', 'current_password'],
+                'password' => ['required', Password::defaults(), 'confirmed'],
+            ]);
+
+            $request->user()->update([
+                'password' => Hash::make($validated['password']),
+            ]);
+
+            return response()->json(['message' => 'Senha atualizada com sucesso']);
+        }
+    #endregion
 }

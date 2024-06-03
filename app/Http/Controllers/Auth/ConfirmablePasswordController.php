@@ -38,4 +38,25 @@ class ConfirmablePasswordController extends Controller
 
         return redirect()->intended(RouteServiceProvider::HOME);
     }
+
+    #region API
+        /**
+         * Confirm the user's password.
+         */
+        public function apistore(Request $request): mixed
+        {
+            if (! Auth::guard('web')->validate([
+                'email' => $request->user()->email,
+                'password' => $request->password,
+            ])) {
+                throw ValidationException::withMessages([
+                    'password' => __('auth.password'),
+                ]);
+            }
+
+            $request->session()->put('auth.password_confirmed_at', time());
+
+            return response(null, 204);
+        }
+    #endregion
 }

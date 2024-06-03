@@ -48,4 +48,32 @@ class RegisteredUserController extends Controller
 
         return redirect(RouteServiceProvider::HOME);
     }
+
+    #region API
+        /**
+         * Handle an incoming registration request.
+         *
+         * @throws \Illuminate\Validation\ValidationException
+         */
+        public function apistore(Request $request): \Illuminate\Http\JsonResponse
+        {
+            $request->validate([
+                'name' => ['required', 'string', 'max:255'],
+                'email' => ['required', 'string', 'lowercase', 'email', 'max:255', 'unique:'.User::class],
+                'password' => ['required', 'confirmed', Rules\Password::defaults()],
+            ]);
+
+            $user = User::create([
+                'name' => $request->name,
+                'email' => $request->email,
+                'password' => Hash::make($request->password),
+            ]);
+
+            event(new Registered($user));
+
+            Auth::login($user);
+
+            return response()->json($user->toArray());
+        }
+    #endregion
 }
