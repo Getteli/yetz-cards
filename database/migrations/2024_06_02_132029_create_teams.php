@@ -24,6 +24,7 @@ return new class extends Migration
             $table->boolean('presence')->default(0);
 			$table->unsignedBigInteger('user_id');
 			$table->unsignedBigInteger('team_id');
+            $table->timestamps();
 
 			$table->foreign('user_id')->references('id')->on('users')->onDelete('cascade');
 			$table->foreign('team_id', 'user_id')->references('id')->on('teams')->onDelete('cascade');

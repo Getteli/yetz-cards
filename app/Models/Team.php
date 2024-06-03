@@ -38,7 +38,7 @@ class Team extends Model
 	public function users()
 	{
 		return $this->belongsToMany(User::class, 'user_has_team', 'team_id', 'user_id')
-        ->withPivot(['presence','created_at', 'updated_at', 'deleted_at']);
+        ->withPivot(['presence','created_at', 'updated_at']);
 	}
 
 	/**

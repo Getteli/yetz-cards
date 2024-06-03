@@ -8,7 +8,7 @@
                             {{ __('Criar jogador(a)') }}
                         </h2>
                     </header>
-                
+
                     <form method="post" action="{{ route('player.create') }}" class="mt-6 space-y-6">
                         @csrf
                         @method('patch')

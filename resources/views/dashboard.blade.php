@@ -45,6 +45,20 @@
                     </div>
                   </a>
                 </div>
+
+                <div class="relative my-3 md:my-0 flex flex-col w-full md:mx-5 break-words bg-white shadow-soft-xl rounded-2xl bg-clip-border">
+                  <a href="{{route('team.form')}}">
+                    <div class="flex-auto p-4">
+                      <div class="flex flex-wrap -mx-3">
+                        <div class="flex-none w-full max-w-full px-3">
+                          <div>
+                            <p class="mb-0 font-sans font-semibold leading-normal text-xl md:text-2xl">Organizar partida</p>
+                          </div>
+                        </div>
+                      </div>
+                    </div>
+                  </a>
+                </div>
             </div>
         </div>
     </div>
