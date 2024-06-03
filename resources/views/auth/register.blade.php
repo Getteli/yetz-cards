@@ -16,6 +16,12 @@
             <x-input-error :messages="$errors->get('email')" class="mt-2" />
         </div>
 
+        <div class="mt-4">
+            <x-input-label for="level" :value="__('Level')" />
+            <x-text-input id="level" class="block mt-1 w-full" type="number" name="level" :value="old('level')" required step="1" min="1" max="5" />
+            <x-input-error :messages="$errors->get('level')" class="mt-2" />
+        </div>
+
         <!-- Password -->
         <div class="mt-4">
             <x-input-label for="password" :value="__('Password')" />
