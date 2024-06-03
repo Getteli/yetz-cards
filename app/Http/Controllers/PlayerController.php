@@ -16,9 +16,9 @@ class PlayerController extends Controller
     /**
      * Listar players.
      */
-    public function index(Request $request): View
+    public function index(): View
     {
-        $players = (new User())->all() ?? [];
+        $players = User::orderBy('created_at','DESC')->get() ?? [];
 
         return view('player.list', [
             'players' => $players,

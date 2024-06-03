@@ -19,7 +19,7 @@ class LogTeamController extends Controller
      */
     public function index(): View
     {
-        $results = LogTeam::all() ?? [];
+        $results = LogTeam::orderBy('created_at','DESC')->get() ?? [];
 
         return view('team.results',[
             'results' => $results

@@ -18,6 +18,10 @@
                             <th scope="col" class="px-6 py-3">
                                 ativo ?
                             </th>
+                            </th>
+                            <th scope="col" class="px-6 py-3">
+                                Criado em
+                            </th>
                             <th scope="col" class="px-6 py-3">
                                 Ações
                             </th>
@@ -34,6 +38,10 @@
                                 </td>
                                 <td class="px-6 py-3">
                                     @if($team->is_active) Sim @else Não @endif
+                                </td>
+                                </td>
+                                <td class="px-6 py-3">
+                                    {{$team->created_at->format('d/m/Y H:i:s')}}
                                 </td>
                                 <td class="px-6 py-3">
                                     <a href="{{route('team.open',['id' => $team->id])}}">editar</a> |

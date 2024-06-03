@@ -17,7 +17,7 @@ class TeamController extends Controller
      */
     public function index(Request $request): View
     {
-        $teams = Team::all() ?? [];
+        $teams = Team::orderBy('created_at','DESC')->get() ?? [];
 
         return view('team.list',[
             'teams' => $teams

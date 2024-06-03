@@ -18,9 +18,11 @@
                             <th scope="col" class="px-6 py-3">
                                 Nível
                             </th>
-                            </th>
                             <th scope="col" class="px-6 py-3">
                                 Goleiro
+                            </th>
+                            <th scope="col" class="px-6 py-3">
+                                Criado em
                             </th>
                             <th scope="col" class="px-6 py-3">
                                 Ações
@@ -41,6 +43,9 @@
                                 </td>
                                 <td class="px-6 py-3">
                                     @if($player->is_goalkeeper) Sim @else Não @endif
+                                </td>
+                                <td class="px-6 py-3">
+                                    {{$player->created_at->format('d/m/Y H:i:s')}}
                                 </td>
                                 <td class="px-6 py-3">
                                     <a href="{{route('player.open',['id' => $player->id])}}">editar</a> |

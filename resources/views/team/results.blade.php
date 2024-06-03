@@ -24,6 +24,10 @@
                             <th scope="col" class="px-6 py-3">
                                 Visitante
                             </th>
+                            </th>
+                            <th scope="col" class="px-6 py-3">
+                                Data da partida
+                            </th>
                         </tr>
                     </thead>
                     <tbody>
@@ -44,6 +48,9 @@
                                 <th scope="row" class="px-6 py-3 font-medium @if($result->score_team2 > $result->score_team1) text-green-700 @else text-red-700 @endif whitespace-nowrap">
                                     {{$result->visitor->name}}
                                 </th>
+                                <td class="px-6 py-3">
+                                    {{$result->created_at->format('d/m/Y H:i:s')}}
+                                </td>
                             </tr>
                         @endforeach
                     </tbody>
