@@ -47,7 +47,7 @@ Route::middleware('auth')->group(function ()
     // LOG TEAM
     Route::get('/resultados/list', [LogTeamController::class, 'index'])->name('log_team.list');
     Route::get('/resultados/form', [LogTeamController::class, 'form'])->name('log_team.form');
-    Route::post('/resultados/create', [LogTeamController::class, 'create'])->name('log_team.create');
+    Route::patch('/resultados/create', [LogTeamController::class, 'create'])->name('log_team.create');
 });
 
 require __DIR__.'/auth.php';
