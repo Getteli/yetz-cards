@@ -64,7 +64,7 @@ class TeamController extends Controller
      */
     public function form(): view
     {
-        $players = User::all() ?? [];
+        $players = User::orderBy('created_at','DESC')->get() ?? [];
 
         return view('team.create',[
             'players' => $players
@@ -222,7 +222,7 @@ class TeamController extends Controller
         $team->delete();
 
         // retoma para a listagem
-        $teams = (new Team())->all() ?? [];
+        $teams = Team::orderBy('created_at','DESC')->get() ?? [];
 
         return Redirect::route('team.list', [
             'teams' => $teams,
@@ -236,7 +236,7 @@ class TeamController extends Controller
          */
         public function apiIndex(Request $request): \Illuminate\Http\JsonResponse
         {
-            $teams = Team::all() ?? [];
+            $teams = Team::orderBy('created_at','DESC')->get() ?? [];
 
             return response()->json($teams->load('users')->toArray());
         }

@@ -31,7 +31,7 @@ class LogTeamController extends Controller
      */
     public function form(): view
     {
-        $teams = Team::all() ?? [];
+        $teams = Team::orderBy('name','ASC')->get() ?? [];
 
         return view('team.create-result',[
             'teams' => $teams
@@ -74,7 +74,7 @@ class LogTeamController extends Controller
         public function apiIndex(Request $request): \Illuminate\Http\JsonResponse
         {
             
-            $results = LogTeam::all() ?? [];
+            $results = LogTeam::orderBy('created_at','DESC')->get() ?? [];
 
             if($results)
             {

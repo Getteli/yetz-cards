@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Http\Requests\PlayerUpdateRequest;
+use App\Http\Resources\PlayerResource;
 use App\Models\User;
 use Illuminate\Http\RedirectResponse;
 use Illuminate\Http\Request;
@@ -98,7 +99,7 @@ class PlayerController extends Controller
         $player->delete();
 
         // retoma para a listagem
-        $players = (new User())->all() ?? [];
+        $players = User::orderBy('created_at','DESC')->get() ?? [];
 
         return Redirect::route('player.list', [
             'players' => $players,
@@ -110,11 +111,11 @@ class PlayerController extends Controller
         /**
          * Listar players. - API
          */
-        public function apiIndex(Request $request): \Illuminate\Http\JsonResponse
+        public function apiIndex(Request $request): PlayerResource
         {
-            $players = (new User())->all() ?? [];
+            $players = User::orderBy('created_at','DESC')->get() ?? [];
 
-            return response()->json($players->toArray());
+            return new PlayerResource($players);
         }
 
         /**
